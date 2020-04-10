@@ -1,0 +1,14 @@
+.slots {
+    border: 2px solid black;
+    background: lightblue;
+}
+
+.slots-winner {
+    color: green;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.slots-loser {
+    color: red;
+}
