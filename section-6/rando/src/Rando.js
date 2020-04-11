@@ -16,6 +16,7 @@ class Rando extends Component {
         return (
             <div>
                 <h1>{this.state.num}</h1>
+                <button onClick={function(){console.log("clicked!")}}>clik clik</button>
             </div>
         );
     }
