@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-const POKE_API = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+// const POKE_API = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+const POKE_API = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
+
+let padToThree = (number) => (number <= 999 ? `00${number}`.slice(-3): number);
 
 function imageClassSwitch(pokeType) {
     switch(pokeType) {
@@ -25,7 +28,7 @@ function imageClassSwitch(pokeType) {
 class Pokecard extends Component {
     render() {
         const {id, name, type, base_exp} = this.props;
-        const img_src = `${POKE_API}${id}.png`;
+        const img_src = `${POKE_API}${padToThree(id)}.png`;
         return (
             <div className={imageClassSwitch(type)}>
 
