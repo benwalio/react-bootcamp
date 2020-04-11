@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const POKE_API = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
 function imageClassSwitch(pokeType) {
     switch(pokeType) {
@@ -24,7 +25,7 @@ function imageClassSwitch(pokeType) {
 class Pokecard extends Component {
     render() {
         const {id, name, type, base_exp} = this.props;
-        const img_src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"
+        const img_src = `${POKE_API}${id}.png`;
         return (
             <div className={imageClassSwitch(type)}>
 
