@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './Die.css';
 
 class Die extends Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            num: 0
+        }
+    }
 
     findIcon = (num) => {
         switch (num) {
@@ -24,11 +30,11 @@ class Die extends Component {
 
     render() {
         const { num } = this.props;
+        // this.setState({ num: this.state.props });
 
         return (
             <div className="Die">
                 <i className={this.findIcon(num)}></i>
-                {console.log(this)}
             </div>
         );
     }

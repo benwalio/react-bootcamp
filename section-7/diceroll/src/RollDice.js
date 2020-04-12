@@ -24,10 +24,16 @@ class RollDice extends Component {
     render() {
         return (
             <div className="RollDice">
-                <Die num={this.state.dieOne} />
-                <Die num={this.state.dieTwo} />
+                <div className="ui two column centered grid">
+                    <div className="column"></div>
+                    <div className="four column centered row">
+                        <div className="column center aligned"><Die num={this.state.dieOne} /></div>
+                        <div className="column center aligned"><Die num={this.state.dieTwo} /></div>
+                    </div>
+                
+                </div>
 
-                <button onClick={this.rollDie}>roll dice</button>
+                <button className="ui massive green button" onClick={this.rollDie}>roll dice</button>
             </div>
         )
     }
