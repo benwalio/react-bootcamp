@@ -58,7 +58,7 @@ class RollDice extends Component {
                 
                 </div>
 
-                <button className={btnClass} onClick={this.rollDie}>roll dice</button>
+                <button className={btnClass} onClick={this.rollDie}>{ !this.state.rolling ? "roll dice" : "rolling"}</button>
                 {/* "ui massive green button" */}
             </div>
         )
