@@ -29,7 +29,7 @@ class RollDice extends Component {
 
                 <button onClick={this.rollDie}>roll dice</button>
             </div>
-        );
+        )
     }
 }
 

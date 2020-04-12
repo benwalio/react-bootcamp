@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import './Die.css';
 
 class Die extends Component {
-    constructor (props) {
-        super (props);
-        this.state = {
-            num: this.props.num,
-            digit: ['hunter2', 'one', 'two', 'three', 'four', 'five', 'six'],
-            icon: "fas fa-dice-"
-        }
-    }
 
     findIcon = (num) => {
         switch (num) {
@@ -30,22 +22,16 @@ class Die extends Component {
         }
     }
 
-    findIcon2 = () => {
-        let digit = ['hunter2', 'one', 'two', 'three', 'four', 'five', 'six']
-        this.setState( { icon: this.state.icon + digit[this.state.num]})
-    }
-
     render() {
-    // const digit = ['hunter2', 'one', 'two', 'three', 'four', 'five', 'six'];
-    // const icon = "fas fa-dice-" + digit[this.state.num];
+        const { num } = this.props;
 
         return (
             <div className="Die">
-                <i className={this.findIcon2}></i>
-                <h2>{this.state.num}</h2>
+                <i className={this.findIcon(num)}></i>
+                {console.log(this)}
             </div>
-        )
-    };
-};
+        );
+    }
+}
 
 export default Die;
