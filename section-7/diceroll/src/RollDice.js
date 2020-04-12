@@ -5,10 +5,20 @@ class RollDice extends Component {
     constructor (props) {
         super(props);
         this.state = {
-
             dieOne: 1,
-            dieTwo: 2
+            dieTwo: 2,
+            rolling: false
         }
+        this.rollDie = this.rollDie.bind(this);
+    }
+
+    rollDie (e) {
+        this.setState(
+            {
+                dieOne: Math.ceil(Math.random() * 6),
+                dieTwo: Math.ceil(Math.random() * 6)
+            }
+        );
     }
 
     render() {
@@ -17,7 +27,7 @@ class RollDice extends Component {
                 <Die num={this.state.dieOne} />
                 <Die num={this.state.dieTwo} />
 
-                <button>roll dice</button>
+                <button onClick={this.rollDie}>roll dice</button>
             </div>
         );
     }
