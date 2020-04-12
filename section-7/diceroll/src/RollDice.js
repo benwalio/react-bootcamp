@@ -3,11 +3,15 @@ import Die from './Die';
 import './RollDice.css';
 
 class RollDice extends Component {
+    static defaultProps = {
+        sides: ["one", "two", "three", "four", "five", "six"]
+    };
+
     constructor (props) {
         super(props);
         this.state = {
-            dieOne: 1,
-            dieTwo: 2,
+            dieOne: this.props.sides[0],
+            dieTwo: this.props.sides[0],
             rolling: false
         }
         this.rollDie = this.rollDie.bind(this);
@@ -15,12 +19,20 @@ class RollDice extends Component {
 
     rollDie (e) {
         this.setState({ rolling: true });
+        const newDieOne = this.props.sides[Math.floor(Math.random() * this.props.sides.length)];
+        const newDieTwo = this.props.sides[Math.floor(Math.random() * this.props.sides.length)];
         setTimeout(() => {
+            
             this.setState({
                 rolling: false,
-                dieOne: Math.ceil(Math.random() * 6),
-                dieTwo: Math.ceil(Math.random() * 6)
+                dieOne: newDieOne,
+                dieTwo: newDieTwo
             })
+            // this.setState({
+            //     rolling: false,
+            //     dieOne: this.props.sides[Math.floor(Math.random() * this.props.side.length)],
+            //     dieTwo: Math.ceil(Math.random() * 6)
+            // })
         }, 1500);
     }
 
