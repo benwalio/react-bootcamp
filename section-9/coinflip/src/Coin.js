@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Coin.css'
 
 class Coin extends Component {
     render() {
@@ -9,8 +10,8 @@ class Coin extends Component {
             iconClass += "crow"
         }
         return (
-            <div>
-                <i class={iconClass}></i>
+            <div className="Coin">
+                <i className={iconClass}></i>
             </div>
         );
     }
