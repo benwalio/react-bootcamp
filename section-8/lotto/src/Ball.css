@@ -1,0 +1,11 @@
+.Ball {
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    background-color: purple;
+    margin: .5rem;
+    color: aqua;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+}

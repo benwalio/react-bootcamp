@@ -6,7 +6,8 @@ import Lotto from "./Lotto";
 function App() {
   return (
     <div className="App">
-      <Lotto game={ {type:"Lotto", balls: 6, max: 32} } />
+      <Lotto />
+      <Lotto type="mini daily" numBalls= {4} max= {18} />
     </div>
   );
 }
