@@ -9,32 +9,20 @@ class Die extends Component {
         }
     }
 
-    findIcon = (num) => {
-        switch (num) {
-            case 1:
-                return "fas fa-dice-one";
-            case 2:
-                return "fas fa-dice-two";
-            case 3:
-                return "fas fa-dice-three";
-            case 4:
-                return "fas fa-dice-four";
-            case 5:
-                return "fas fa-dice-five";
-            case 6:
-                return "fas fa-dice-six";
-            default:
-                return "fas fa-cheese";
-        }
-    }
-
     render() {
         const { num } = this.props;
+        let iconClass = "fas fa-dice-";
         // this.setState({ num: this.state.props });
+        function getStrFromNum (num) {
+            let digits = ["hunter2", "one", "two", "three", "four", "five", "six"];
+            return digits[num];
+        }
+
+        iconClass += getStrFromNum(num);
 
         return (
             <div className="Die">
-                <i className={this.findIcon(num)}></i>
+                <i className={iconClass}></i>
             </div>
         );
     }
