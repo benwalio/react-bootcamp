@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Die from './Die';
+import './RollDice.css';
 
 class RollDice extends Component {
     constructor (props) {
@@ -13,27 +14,40 @@ class RollDice extends Component {
     }
 
     rollDie (e) {
-        this.setState(
-            {
+        this.setState({ rolling: true });
+        setTimeout(() => {
+            this.setState({
+                rolling: false,
                 dieOne: Math.ceil(Math.random() * 6),
                 dieTwo: Math.ceil(Math.random() * 6)
-            }
-        );
+            })
+        }, 1500);
     }
 
     render() {
+        let btnClass = "ui massive";
+        let dieClass = "column center aligned";
+
+        if (this.state.rolling) {
+            btnClass += " loading disabled button";
+            dieClass += " RollDiceShakey"
+        } else {
+            btnClass += " green button";
+        }
+
         return (
             <div className="RollDice">
                 <div className="ui two column centered grid">
                     <div className="column"></div>
                     <div className="four column centered row">
-                        <div className="column center aligned"><Die num={this.state.dieOne} /></div>
-                        <div className="column center aligned"><Die num={this.state.dieTwo} /></div>
+                        <div className={dieClass}><Die num={this.state.dieOne} /></div>
+                        <div className={dieClass}><Die num={this.state.dieTwo} /></div>
                     </div>
                 
                 </div>
 
-                <button className="ui massive green button" onClick={this.rollDie}>roll dice</button>
+                <button className={btnClass} onClick={this.rollDie}>roll dice</button>
+                {/* "ui massive green button" */}
             </div>
         )
     }
