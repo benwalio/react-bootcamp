@@ -3,9 +3,15 @@ import './Colorblock.css';
 
 class Colorblock extends Component {
     render() {
+        let divStyle = {
+            backgroundColor: this.props.color
+        }
+
         return (
-            <div className="Colorblock">
-                
+            <div style={divStyle} className="Colorblock">
+                <div className="ColorblockColor">
+
+                </div>
             </div>
         );
     }
