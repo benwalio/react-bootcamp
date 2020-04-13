@@ -16,6 +16,7 @@ class Colorblocks extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.generateColors = this.generateColors.bind(this);
         this.retreiveRandColor = this.retreiveRandColor.bind(this);
+        this.generateColor = this.generateColor.bind(this);
     }
 
     retreiveRandColor (prevColor) {
@@ -37,18 +38,42 @@ class Colorblocks extends Component {
         }))
     }
 
+    generateColor (colorIndex) {
+        // this function is passed down to the individual blocks and then calledback on click
+        // huge PITA - but basically, i also pass down the index. then, when i click a color it 
+        // arrows the function back here with that index. We then go and find the obj
+        // in the color array, change it, and set that state - causing the square to update
+        // this took me hours and hours. ugh.
+        console.log(colorIndex);
+        let colors = [...this.state.colors];
+        console.log(colors);
+        let updateColor = {...colors[colorIndex]};
+        console.log(updateColor);
+        updateColor = {
+            color: this.retreiveRandColor(updateColor.color),
+            prevColor: updateColor.color
+        }
+        console.log(updateColor);
+        colors[colorIndex] = updateColor;
+        this.setState({colors})
+        // console.log(this);
+        // this.setState( { colors[colorIndex]: { color: this.retreiveRandColor(this.color), prevColor: this.color} });
+        // console.log(this);
+    }
+
     handleClick(e) {
         this.generateColors();
     }
 
+
     render() {
-        // this.generateColors();
-        
-        
         return (
             <div className="Colorblock">
                 <div className="Colors">
-                    {this.state.colors.map( item => <Colorblock color={item.color} />)}
+                    {this.state.colors.map( 
+                        (item, index) =>
+                            <Colorblock updateColor={this.generateColor} colorIndex={index} color={item.color} />
+                        )}
                 </div>
                 {/* {this.state.colors.map( item => <Colorblock color={item.color} />)} */}
                 {/* {this.state.colors.map(c => console.log(c))} */}

@@ -8,10 +8,10 @@ class Colorblock extends Component {
         }
 
         return (
-            <div style={divStyle} className="Colorblock">
-                <div className="ColorblockColor">
+            <div style={divStyle} className="Colorblock" onClick={() => this.props.updateColor(this.props.colorIndex)}>
+                {/* <div className="ColorblockColor" onClick={this.generateColor(this.props.color)}>
 
-                </div>
+                </div> */}
             </div>
         );
     }
