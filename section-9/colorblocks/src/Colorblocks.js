@@ -11,8 +11,7 @@ class Colorblocks extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            colors: Array.from({ length: this.props.numColors }).fill(this.props.colorArray[Math.floor(Math.random() * this.props.colorArray.length)]),
-            prevColor: null
+            colors: Array.from({ length: this.props.numColors } ).fill().map( () => { return {color: this.props.colorArray[Math.floor(Math.random() * this.props.colorArray.length)]}})
         }
         this.handleClick = this.handleClick.bind(this);
         this.generateColors = this.generateColors.bind(this);
@@ -20,8 +19,6 @@ class Colorblocks extends Component {
     }
 
     retreiveRandColor (prevColor) {
-        
-
         let pickedColor = this.props.colorArray[Math.floor(Math.random() * this.props.colorArray.length)];
         if (pickedColor === prevColor) {
             pickedColor = this.retreiveRandColor(prevColor);
@@ -45,7 +42,8 @@ class Colorblocks extends Component {
     }
 
     render() {
-        this.generateColors();
+        // this.generateColors();
+        
         
         return (
             <div className="Colorblock">
