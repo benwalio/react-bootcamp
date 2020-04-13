@@ -8,7 +8,10 @@ class Colorblock extends Component {
         }
 
         return (
-            <div style={divStyle} className="Colorblock" onClick={() => this.props.updateColor(this.props.colorIndex)}>
+            <div style={divStyle} className="Colorblock" onClick={this.props.updateColor.bind(this, this.props.colorIndex)}>
+            {/* <div style={divStyle} className="Colorblock" onClick={() => this.props.updateColor(his.props.colorIndex)}> 
+                Also works, my initial find. both options bind to a new function and create a new function */}
+
                 {/* <div className="ColorblockColor" onClick={this.generateColor(this.props.color)}>
 
                 </div> */}
