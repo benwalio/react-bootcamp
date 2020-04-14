@@ -72,11 +72,11 @@
   background-color: #33a6cc;
 }
 
-.Hangman button:hover {
+.Hangman .Hangman-btns button:hover {
   background-color: #ff9800;
 }
 
-.Hangman button:disabled {
+.Hangman .Hangman-btns button:disabled {
   background: #bdbdbd;
   color: #eeeeee;
   box-shadow: 0 6px #9e9e9e;

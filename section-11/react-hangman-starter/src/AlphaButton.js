@@ -7,19 +7,20 @@ class AlphaButton extends Component {
 
     constructor (props) {
         super(props);
+        this.state = {
+            guessed: false
+        }
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
-        this.btnClass += " clicked";
         this.props.handleGuess();
     }
     
     render() {
-        let btnClass = "AlphaButton";
         return (
             <div>
-                <button className={btnClass} onClick={this.handleClick}>{this.props.value}</button>
+                <button disabled={this.props.disabled} onClick={this.handleClick}>{this.props.value}</button>
             </div>
         );
     }

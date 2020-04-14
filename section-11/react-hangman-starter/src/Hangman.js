@@ -46,45 +46,40 @@ class Hangman extends Component {
     - if not in answer, increase number-wrong guesses
   */
   handleGuess(value) {
-    console.log(value);
+    console.log(this.state);
     this.setState(st => ({
       guessed: st.guessed.add(value),
       nWrong: st.nWrong + (st.answer.includes(value) ? 0 : 1),
       gameOver: (st.nWrong === this.props.maxWrong ? true : false)
       } // added in a -1 to maxwrong to account for render order
     ), this.checkGameOver());
+    console.log(this.state)
   }
 
   checkGameOver () {
-    console.log(this.state);
-    if (this.state.gameOver) {
+    if (this.state.nWrong === this.props.maxWrong) {
+      console.log("game ovah")
       this.gameOver();
     }
   }
 
   gameOver () {
-    this.generateButtons();
+    this.setState({
+      gameOver: true
+    });
   }
 
   /** generateButtons: return array of letter buttons to render */
   generateButtons() {
     return "abcdefghijklmnopqrstuvwxyz".split("").map(ltr => (
-      // <button
-      //   key={ltr}
-      //   value={ltr}
-      //   onClick={this.handleGuess}
-      //   disabled={this.state.gameOver ? true : this.state.guessed.has(ltr)}
-      //   alt={ltr + " button"}
-      // >
-      //   {ltr}
-      // </button>
       <AlphaButton
         key={ltr}
         value={ltr}
         handleGuess={() => this.handleGuess(ltr)}
+        disabled={this.state.gameOver ? true : this.state.guessed.has(ltr)}
         alt={ltr + " button"}
       />
-    ));
+    ), this.checkGameOver());
   }
 
   handleReset (e) {
@@ -105,7 +100,10 @@ class Hangman extends Component {
         <img src={this.props.images[this.state.nWrong]} alt={altText} />
         <p className='Hangman-word'>{this.guessedWord()}</p>
         {/* <p className='Hangman-btns'>{this.generateButtons()}</p> */}
-        <div className='Hangman-btns'>{this.generateButtons()}</div>
+        <div className='Hangman-btns'>
+        {this.state.gameOver ? <h1>you lose</h1> : this.generateButtons()}
+        {/* {this.generateButtons()} */}
+        </div>
         <button className='Hangman-resetbtn' onClick={this.handleReset}>Reset</button>
       </div>
     );
