@@ -47,6 +47,27 @@
   padding-top: 4px;
 }
 
+.Hangman .Hangman-resetbtn {
+  display: flex;
+  border: none;
+  font-family: inherit;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 120px;
+  margin: 10px;
+  letter-spacing: 3px;
+  outline: none;
+  background: red;
+  color: gray;
+  box-shadow: none;
+  border-radius: 5px;
+  padding-top: 4px;
+}
+
+.Hangman .Hangman-resetbtn:hover {
+  background-color: #33a6cc;
+}
+
 .Hangman button:hover {
   background-color: #ff9800;
 }
