@@ -5,7 +5,7 @@ class Numberlist extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nums: [1, 2, 2, 2, 2, 2, 2, 3, 4, 3, 4, 3, 4, 3, 4, 5]
+            nums: [1, 2, 3, 4, 5]
         };
     }
 
@@ -17,8 +17,8 @@ class Numberlist extends Component {
     }
 
     render() {
-        let nums = this.state.nums.map(n => (
-            <NumberItem value={n} remove={() => this.remove(n)} />
+        let nums = this.state.nums.map( n => (
+            <NumberItem key={n} value={n} remove={() => this.remove(n)} />
         ));
 
         return (
