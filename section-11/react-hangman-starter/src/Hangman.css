@@ -26,12 +26,15 @@
 
 .Hangman-btns {
   text-align: center;
-  display: inline-block;
-  width: 250px;
+  display: flex;
+  width: 100%;
   margin-top: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.Hangman button {
+.Hangman .Hangman-btns button {
   border: none;
   font-family: inherit;
   font-size: 1rem;
@@ -48,20 +51,21 @@
 }
 
 .Hangman .Hangman-resetbtn {
-  display: flex;
+  display: inline-flex;
   border: none;
   font-family: inherit;
   font-size: 2rem;
   cursor: pointer;
-  width: 120px;
-  margin: 10px;
+  width: 35%;
+  margin: 5%;
   letter-spacing: 3px;
   outline: none;
   background: red;
-  color: gray;
+  color: honeydew;
   box-shadow: none;
   border-radius: 5px;
   padding-top: 4px;
+  justify-content: center;
 }
 
 .Hangman .Hangman-resetbtn:hover {

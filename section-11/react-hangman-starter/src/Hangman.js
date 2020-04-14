@@ -8,6 +8,7 @@ import img4 from "./4.jpg";
 import img5 from "./5.jpg";
 import img6 from "./6.jpg";
 import { randomWord } from './words'
+import AlphaButton from "./AlphaButton";
 
 class Hangman extends Component {
   /** by default, allow 6 guesses and use provided gallows images. */
@@ -44,12 +45,12 @@ class Hangman extends Component {
     - add to guessed letters
     - if not in answer, increase number-wrong guesses
   */
-  handleGuess(evt) {
-    let ltr = evt.target.value;
+  handleGuess(value) {
+    console.log(value);
     this.setState(st => ({
-      guessed: st.guessed.add(ltr),
-      nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1),
-      gameOver: (st.nWrong === this.props.maxWrong - 1 ? true : false)
+      guessed: st.guessed.add(value),
+      nWrong: st.nWrong + (st.answer.includes(value) ? 0 : 1),
+      gameOver: (st.nWrong === this.props.maxWrong ? true : false)
       } // added in a -1 to maxwrong to account for render order
     ), this.checkGameOver());
   }
@@ -68,15 +69,21 @@ class Hangman extends Component {
   /** generateButtons: return array of letter buttons to render */
   generateButtons() {
     return "abcdefghijklmnopqrstuvwxyz".split("").map(ltr => (
-      <button
+      // <button
+      //   key={ltr}
+      //   value={ltr}
+      //   onClick={this.handleGuess}
+      //   disabled={this.state.gameOver ? true : this.state.guessed.has(ltr)}
+      //   alt={ltr + " button"}
+      // >
+      //   {ltr}
+      // </button>
+      <AlphaButton
         key={ltr}
         value={ltr}
-        onClick={this.handleGuess}
-        disabled={this.state.gameOver ? true : this.state.guessed.has(ltr)}
+        handleGuess={() => this.handleGuess(ltr)}
         alt={ltr + " button"}
-      >
-        {ltr}
-      </button>
+      />
     ));
   }
 
@@ -97,7 +104,8 @@ class Hangman extends Component {
         <p>Number of wrong guesses: {this.state.nWrong}</p>
         <img src={this.props.images[this.state.nWrong]} alt={altText} />
         <p className='Hangman-word'>{this.guessedWord()}</p>
-        <p className='Hangman-btns'>{this.generateButtons()}</p>
+        {/* <p className='Hangman-btns'>{this.generateButtons()}</p> */}
+        <div className='Hangman-btns'>{this.generateButtons()}</div>
         <button className='Hangman-resetbtn' onClick={this.handleReset}>Reset</button>
       </div>
     );
