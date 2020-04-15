@@ -44,16 +44,12 @@ class Colorblocks extends Component {
         // arrows the function back here with that index. We then go and find the obj
         // in the color array, change it, and set that state - causing the square to update
         // this took me hours and hours. ugh.
-        console.log(colorIndex);
         let colors = [...this.state.colors];
-        console.log(colors);
         let updateColor = {...colors[colorIndex]};
-        console.log(updateColor);
         updateColor = {
             color: this.retreiveRandColor(updateColor.color),
             prevColor: updateColor.color
         }
-        console.log(updateColor);
         colors[colorIndex] = updateColor;
         this.setState({colors})
         // console.log(this);
