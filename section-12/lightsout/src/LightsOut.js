@@ -50,8 +50,10 @@ class LightsOut extends Component {
         if(col < this.props.numCols - 1) {
             lightArray[col + 1][row] = this.toggleLight(lightArray[col + 1][row]);
         }
+        let hasWon = lightArray.every(row => row.every(light => !light));
         this.setState({
-            lights: lightArray
+            lights: lightArray,
+            hasWon: hasWon
         })
     }
 
@@ -64,24 +66,27 @@ class LightsOut extends Component {
     }
 
     lightClick(row, col, lit) {
-        this.aroundLightClicked(row, col);
         let lightArray = [...this.state.lights];
         lightArray[col][row] = this.toggleLight(lit);
+        this.aroundLightClicked(row, col);
         this.setState({
             lights: lightArray
         })
     }
 
     generateLights() {
-        return this.state.lights.map((col, idxCol) => col.map((lt, idxLt) => (
-            <Light col={idxCol} row={idxLt}
-            value={lt}
+        return this.state.lights.map((col, idxCol) => col.map((row, idxRow) => (
+            <Light col={idxCol} row={idxRow} key={idxCol + "-" + idxRow}
+            value={row}
             lightClick={this.lightClick}
             />
         )));
     }
 
     render() {
+        if(this.state.hasWon) {
+            return <h1>YOU WINNNAH</h1>
+        }
         return (
             <div className="LightsOut">
                 <h1>lights out</h1>
