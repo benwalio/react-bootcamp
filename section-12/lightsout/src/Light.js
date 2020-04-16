@@ -9,6 +9,7 @@ class Light extends Component {
 
     handleClick () {
         // do something
+        this.props.lightClick(this.props.row, this.props.col, this.props.value)
     }
 
     render() {

@@ -4,53 +4,81 @@ import Light from './Light';
 
 class LightsOut extends Component {
     static defaultProps = {
-        startLit: 5,
-        squareSize: 5
+        numRows: 5,
+        numCols: 5,
+        chanceStartLit: 0.25
     }
 
     constructor (props) {
         super(props);
         this.state = {
-            lights: Array.from({length: this.props.squareSize}).fill(Array.from({length: this.props.squareSize}).fill(0)),
+            hasWon: false,
+            lights: this.fillStateLights(),
             filled: false
         };
-        this.fillRandomLights = this.fillRandomLights.bind(this);
+        this.fillStateLights = this.fillStateLights.bind(this);
+        this.lightClick = this.lightClick.bind(this);
     }
 
-    fillRandomLights () {
-        // let numLights = 0;
+    fillStateLights () {
+        // colt initialized empty arrays and did a push and it worked fine
+        // not sure why my array init failed, but this one works
+        let lightArray = [];
+
+        for (let i = 0; i < this.props.numCols; i++) {
+            let row = [];
+            for (let j = 0; j < this.props.numRows; j++) {
+                row.push(Math.random() < this.props.chanceStartLit);
+            };
+            lightArray.push(row);
+        };
+        return lightArray;
+        
+    }
+
+    aroundLightClicked(row, col) {
         let lightArray = [...this.state.lights];
-        // lightArray.map(arr => arr.map().fill(0));
-        for (let i = 0; i < lightArray.length; i++) {
-            for (let j = 0; j < lightArray[i].length; j++) {
-                if(Math.ceil(Math.random() * 4) === 4) {
-                    // 1 of 4 get lit
-                    lightArray[i][j] = 1;
-                }
-            }
+        if(row > 0) {
+            lightArray[col][row - 1] = this.toggleLight(lightArray[col][row - 1]);
+        };
+        if(row < this.props.numRows - 1) {
+            lightArray[col][row + 1] = this.toggleLight(lightArray[col][row + 1]);
+        }
+        if(col > 0) {
+            lightArray[col - 1][row] = this.toggleLight(lightArray[col - 1][row]);
+        }
+        if(col < this.props.numCols - 1) {
+            lightArray[col + 1][row] = this.toggleLight(lightArray[col + 1][row]);
         }
         this.setState({
-            lights: lightArray,
-            filled: true
-        });
-        console.log(lightArray);
+            lights: lightArray
+        })
     }
 
-    startGame () {
-        this.fillRandomLights();
-        return this.generateLights();
+    toggleLight(light) {
+        if(light) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    lightClick(row, col, lit) {
+        this.aroundLightClicked(row, col);
+        let lightArray = [...this.state.lights];
+        lightArray[col][row] = this.toggleLight(lit);
+        this.setState({
+            lights: lightArray
+        })
     }
 
     generateLights() {
-        // if(!this.state.filled) {
-        //     this.fillRandomLights ();
-        // }
-        let lightArray = [];
         return this.state.lights.map((col, idxCol) => col.map((lt, idxLt) => (
-            <Light col={col} lt={lt} iC={idxCol} iL={idxLt}
-            value={Math.ceil(Math.random() * 4) === 4 ? 1 : 0}
+            <Light col={idxCol} row={idxLt}
+            value={lt}
+            lightClick={this.lightClick}
             />
-        ), (col) => lightArray.push(col)));
+        )));
     }
 
     render() {
