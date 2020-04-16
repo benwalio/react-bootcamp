@@ -1,0 +1,13 @@
+.Light div {
+    display: inline-flex;
+    height: 58px;
+    width: 58px;
+    margin: 0;
+    border: 1px solid #404040;
+    background-color: red;
+    float: left;
+}
+
+.Light .Lit {
+    background-color: blue;
+}

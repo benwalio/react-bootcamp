@@ -1,0 +1,18 @@
+body {
+    background-color: #404040;
+}
+
+.LightsOut h1 {
+    color: white;
+}
+
+.LightsOut-Box {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    width: 300px;
+    background-color: darkblue;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
