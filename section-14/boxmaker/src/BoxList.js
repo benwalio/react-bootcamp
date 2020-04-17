@@ -8,6 +8,7 @@ class BoxList extends Component {
         super(props);
         this.state = this.initialState();
         this.addBox = this.addBox.bind(this);
+        this.removeBox = this.removeBox.bind(this);
     }
 
     initialState() {
@@ -19,7 +20,12 @@ class BoxList extends Component {
     }
 
     removeBox(id) {
-
+        let boxRemoved = [...this.state.boxes];
+        // findindex is a great function for sorting through arrays of objects and returning an index
+        boxRemoved.splice(this.state.boxes.findIndex(box => box.id === id));
+        this.setState({
+            boxes: boxRemoved
+        })
     }
 
     addBox(box) {
@@ -33,7 +39,7 @@ class BoxList extends Component {
         return (
             <div>
                 {this.state.boxes.map(box => (
-                    <Box id={box.id} width={box.boxWidth} height={box.boxHeight} removeBox={this.removeBox} />
+                    <Box key={box.id} id={box.id} width={box.boxWidth} height={box.boxHeight} removeBox={this.removeBox} />
                 ))}
             </div>
         );
