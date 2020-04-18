@@ -1,22 +1,43 @@
 import React, { Component } from 'react';
 
 class NewTodoForm extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
-        this.state = {
-            task = ""
-        } 
+        this.state = this.initialState();
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    };
+    
+    initialState () {
+        return ({
+            content: ""
+        })
+    };
+    
+
+    handleSubmit (e) {
+        e.preventDefault();
+        this.props.addTodo(this.state);
+        this.setState(this.initialState);
+    };
+
+    handleChange (e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
+
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label onSubmit={this.handleSubmit} htmlFor="task">new task</label>
+                    <label htmlFor="task">new task</label>
                     <input 
                         type="text"
-                        name="task"
+                        name="content"
                         id="task"
-                        onChange={this.state.task}
+                        value={this.state.content}
+                        onChange={this.handleChange}
                     />
                     <button>submit</button>
                 </form>
