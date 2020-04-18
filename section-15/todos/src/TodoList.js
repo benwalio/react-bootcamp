@@ -11,6 +11,7 @@ class TodoList extends Component {
         this.removeTodo = this.removeTodo.bind(this);
         this.renderTodos = this.renderTodos.bind(this);
         this.addTodo = this.addTodo.bind(this);
+        this.toggleDone = this.toggleDone.bind(this);
     }
 
     componentDidMount() {
@@ -22,7 +23,19 @@ class TodoList extends Component {
         this.setState({
             todos: ls.get('todos') || this.initialState()
         });
-      }
+    }
+
+    toggleDone(id) {
+        let state = {...this.state};
+        let index = this.state.todos.findIndex(todo => todo.id === id);
+        state.todos[index].done = !state.todos[index].done;
+        // console.log(todos.todos[this.state.todos.findIndex(todo => todo.id === id)]);
+        // console.log(state);
+        this.setState({
+            todos: state.todos
+        })
+        ls.set('todos', state.todos)
+    }
 
     initialState() {
         return (
@@ -34,10 +47,8 @@ class TodoList extends Component {
 
     removeTodo(id) {
         let todoRemoved = [...this.state.todos];
-        console.log(todoRemoved);
         
         todoRemoved.splice(this.state.todos.findIndex(todo => todo.id === id), 1);
-        console.log(todoRemoved);
         
         this.setState({
             todos: todoRemoved
@@ -57,10 +68,6 @@ class TodoList extends Component {
         ls.set('todos', local);
     }
 
-    toggleDone(id) {
-        this.setState({})
-    }
-
     renderTodos() {
         return (
             <ul>
@@ -70,7 +77,9 @@ class TodoList extends Component {
                             key={todo.id}
                             id={todo.id}
                             content={todo.content}
+                            done={todo.done}
                             removeTodo={this.removeTodo}
+                            toggleDone={this.toggleDone}
                         />
                     </li>
                 )}
