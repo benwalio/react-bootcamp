@@ -15,7 +15,7 @@ class TodoList extends Component {
     initialState() {
         return (
             {todos: [
-                {content: "task 1", id: uuid()}
+                {content: "task 1", id: uuid(), done: false}
             ]}
         )
     }
