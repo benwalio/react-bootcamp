@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Todo from './Todo';
 import NewTodoForm from './NewTodoForm';
 import { v4 as uuid } from 'uuid';
+import ls from 'local-storage';
 
 class TodoList extends Component {
     constructor(props) {
@@ -11,6 +12,17 @@ class TodoList extends Component {
         this.renderTodos = this.renderTodos.bind(this);
         this.addTodo = this.addTodo.bind(this);
     }
+
+    componentDidMount() {
+        // fetch(URL)
+        // .then(response => response.json())
+        // .then(json => this.setState({
+        //   todos: ls.get('todos') || []
+        // }));
+        this.setState({
+            todos: ls.get('todos') || this.initialState()
+        });
+      }
 
     initialState() {
         return (
@@ -30,13 +42,23 @@ class TodoList extends Component {
         this.setState({
             todos: todoRemoved
         });
+        ls.set('todos', todoRemoved);
     }
 
     addTodo (todo) {
         let newTodo = {...todo, id: uuid()};
         this.setState(state => ({
             todos: [...state.todos, newTodo]
-        }))
+        }), () => this.saveToLocal());
+    }
+
+    saveToLocal() {
+        const local = this.state.todos;
+        ls.set('todos', local);
+    }
+
+    toggleDone(id) {
+        this.setState({})
     }
 
     renderTodos() {
