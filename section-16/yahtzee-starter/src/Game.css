@@ -1,19 +1,20 @@
 .Game {
-  width: 30%;
   background: white;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
-  margin: 0 30%;
+  margin: auto 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 h2 {
   font-weight: 100;
   font-size: 2em;
   border-bottom: 2px solid purple;
   display: inline-block;
 }
+
 .Game-dice-section {
   width: 80%;
   margin-left: auto;

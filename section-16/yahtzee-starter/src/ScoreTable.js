@@ -11,7 +11,7 @@ class ScoreTable extends Component {
 
     return (
       <div className="ScoreTable">
-        <h1>current score - {Object.values(scores).reduce((scores, score) => (scores + (score || 0)), 0)}</h1>
+        <h2>current score - {Object.values(scores).reduce((scores, score) => (scores + (score || 0)), 0)}</h2>
         <section className="ScoreTable-section">
           <h2>Upper</h2>
           <table cellSpacing="0">

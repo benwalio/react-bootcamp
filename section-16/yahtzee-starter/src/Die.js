@@ -28,7 +28,7 @@ class Die extends Component {
       <div className="Die">
         <i
           className={iconClass}
-          style={{ backgroundColor: this.props.locked ? "grey" : "black" }}
+          style={{ color: this.props.locked ? "grey" : "white" }}
           onClick={this.handleClick}
         ></i>
       </div>
