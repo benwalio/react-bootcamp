@@ -3,6 +3,7 @@ import Todo from './Todo';
 import NewTodoForm from './NewTodoForm';
 import { v4 as uuid } from 'uuid';
 import ls from 'local-storage';
+import './TodoList.css';
 
 class TodoList extends Component {
     constructor(props) {
@@ -103,7 +104,7 @@ class TodoList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="TodoList">
                 <h1>todo list</h1>
                 {this.renderTodos()}
                 <NewTodoForm key={uuid()} addTodo={this.addTodo} />
