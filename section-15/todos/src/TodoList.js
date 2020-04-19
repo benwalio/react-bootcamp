@@ -106,6 +106,7 @@ class TodoList extends Component {
         return (
             <div className="TodoList">
                 <h1>todo list</h1>
+                <p>a simple react todo list</p>
                 {this.renderTodos()}
                 <NewTodoForm key={uuid()} addTodo={this.addTodo} />
             </div>
