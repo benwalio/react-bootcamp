@@ -12,6 +12,7 @@ class TodoList extends Component {
         this.renderTodos = this.renderTodos.bind(this);
         this.addTodo = this.addTodo.bind(this);
         this.toggleDone = this.toggleDone.bind(this);
+        this.editTodo = this.editTodo.bind(this);
     }
 
     componentDidMount() {
@@ -68,6 +69,18 @@ class TodoList extends Component {
         ls.set('todos', local);
     }
 
+    editTodo(id, content) {
+        let todos = [...this.state.todos];
+        let index = this.state.todos.findIndex(todo => todo.id === id);
+        todos[index].content = content;
+        // console.log(todos.todos[this.state.todos.findIndex(todo => todo.id === id)]);
+        // console.log(state);
+        this.setState({
+            todos:todos
+        })
+        ls.set('todos', todos)       
+    }
+
     renderTodos() {
         return (
             <ul>
@@ -78,6 +91,7 @@ class TodoList extends Component {
                             id={todo.id}
                             content={todo.content}
                             done={todo.done}
+                            editTodo={this.editTodo}
                             removeTodo={this.removeTodo}
                             toggleDone={this.toggleDone}
                         />
