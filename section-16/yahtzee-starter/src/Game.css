@@ -7,55 +7,8 @@ h2 {
   display: inline-block;
 }
 
-.Game-reroll {
-  font-size: 2em;
-  color: white;
-  font-weight: 100;
-  transition: 0.5s;
-  background-size: 200% auto;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
-  background-image: linear-gradient(
-    to right,
-    #91eae4 0%,
-    #7f7fd5 51%,
-    #91eae4 100%
-  );
-  border-radius: 0.5rem;
-  border: none;
-  width: 50%;
-
-  margin-bottom: 2rem;
-}
-
-.Game-reroll:hover {
-  cursor: pointer;
-  background-position: right center;
-}
-
-.Game-reroll:active,
-.Game-reroll:focus {
-  outline: none;
-}
-
-.Game-reroll:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
-  opacity: 0.5;
-}
 
 .Game-description {
   font-style: italic;
   color: white;
-}
-
-@keyframes Gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }

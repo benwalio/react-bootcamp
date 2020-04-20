@@ -2,7 +2,19 @@ import React, { Component } from "react";
 import Dice from "./Dice";
 import ScoreTable from "./ScoreTable";
 import "./Game.css";
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const Gradient = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`;
 
 const GameBox = styled.div`
   background: white;
@@ -18,9 +30,9 @@ const GameHeader = styled.header`
   width: 100%;
   background: linear-gradient(-45deg, #673ab7, #9c27b0);
   background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+  -webkit-animation: ${Gradient} 15s ease infinite;
+  -moz-animation: ${Gradient} 15s ease infinite;
+  animation: ${Gradient} 15s ease infinite;
 `;
 
 const AppTitle = styled.h1`
@@ -45,6 +57,42 @@ const GameButtonWrapper = styled.div`
   align-items: center;
 `;
 
+const GameRerollB = styled.button`
+  font-size: 2em;
+  color: white;
+  font-weight: 100;
+  transition: 0.5s;
+  background-size: 200% auto;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(
+    to right,
+    #91eae4 0%,
+    #7f7fd5 51%,
+    #91eae4 100%
+  );
+  border-radius: 0.5rem;
+  border: none;
+  width: 50%;
+
+  margin-bottom: 2rem;
+
+  &:hover {
+    cursor: pointer;
+    background-position: right center;
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+`;
+
 const NUM_DICE = 5;
 const NUM_ROLLS = 3;
 
@@ -55,6 +103,7 @@ class Game extends Component {
       dice: Array.from({ length: NUM_DICE }),
       locked: Array(NUM_DICE).fill(false),
       rollsLeft: NUM_ROLLS,
+      rolling: false,
       scores: {
         ones: undefined,
         twos: undefined,
@@ -74,19 +123,29 @@ class Game extends Component {
     this.roll = this.roll.bind(this);
     this.doScore = this.doScore.bind(this);
     this.toggleLocked = this.toggleLocked.bind(this);
+    this.animateRoll = this.animateRoll.bind(this);
   }
+
+  componentDidMount() {
+    this.animateRoll();
+  }
+
+  animateRoll() {
+    this.setState({rolling: true}, () => 
+      setTimeout(this.roll, 1000)
+    );
+  };
 
   roll(evt) {
     // roll dice whose indexes are in reroll
-    setTimeout(() => {
     this.setState(st => ({
       dice: st.dice.map((d, i) =>
         st.locked[i] ? d : Math.ceil(Math.random() * 6)
       ),
       locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
-      rollsLeft: st.rollsLeft - 1
+      rollsLeft: st.rollsLeft - 1,
+      rolling: false
     }));
-   }, 1500);
   }
 
   toggleLocked(idx) {
@@ -123,15 +182,15 @@ class Game extends Component {
               dice={this.state.dice}
               locked={this.state.locked}
               handleClick={this.toggleLocked}
+              rolling={this.state.rolling}
             />
             <GameButtonWrapper>
-              <button
-                className='Game-reroll'
+              <GameRerollB
                 disabled={this.state.locked.every(x => x)}
-                onClick={this.roll}
+                onClick={this.animateRoll}
               >
                 {this.state.rollsLeft} Rerolls Left
-              </button>
+              </GameRerollB>
             </GameButtonWrapper>
           </GameDiceSection>
         </GameHeader>

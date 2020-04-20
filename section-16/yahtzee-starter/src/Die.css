@@ -26,7 +26,7 @@
   opacity: 0.8;
 }
 .Die-Rolling {
-  animation: spin 1s ease-out;
+  animation: spin 1s ease-in-out infinite;
 }
 
 .Die-Rolling:hover,

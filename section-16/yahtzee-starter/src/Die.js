@@ -22,10 +22,14 @@ class Die extends Component {
         return digits[num];
     }
 
+    let divClass = "Die";
+    if (this.props.locked) divClass += " Die-locked";
+    if (this.props.rolling && !this.props.locked) divClass += " Die-Rolling";
+
     iconClass += getStrFromNum(num);
 
     return (
-      <div className={this.props.locked ? "Die" : "Die Die-Rolling"}>
+      <div className={divClass}>
         <i
           className={iconClass}
           style={{ color: this.props.locked ? "grey" : "white" }}
