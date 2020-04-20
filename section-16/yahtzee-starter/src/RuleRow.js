@@ -1,32 +1,70 @@
 import React, { Component } from 'react';
-import './RuleRow.css'
+import styled, { css, keyframes } from 'styled-components';
 
-class RuleRow extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.handleClick = this.handleClick.bind(this);
-  // }
+const Slide = keyframes`
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
+  }
+`;
 
-  // handleClick(e) {
-  //   e.preventDefault();
-  //   className = "RuleRow RuleRow-disabled";
-  //   this.props.doScore();
-  // }
+const RuleRowTR = styled.tr`
+  transition: all 0.2s;
 
-  render() {
-    let className = "RuleRow RuleRow-";
+  td {
+    padding: 0.3em;
+    border-bottom: solid 1px black;
+  }
 
-    if (!isNaN(this.props.score)) {
-      className += "disabled";
-    } else {
-      className += "active"
+  ${props => isNaN(props.score) && css`
+    &:hover {
+      cursor: pointer;
+      background: rgba(227, 242, 253, 0.5);
+    }
+  `}
+
+  ${props => !isNaN(props.score) && css`
+    background: linear-gradient(
+      to right,
+      rgba(209, 196, 233, 1) 0%,
+      rgba(209, 196, 233, 1) 0%,
+      rgba(209, 196, 233, 1) 30%,
+      rgba(227, 242, 253, 1) 40%
+    );
+    background-size: 300% 300%;
+    animation: ${Slide} 1s ease 1;
+
+    td:first-child {
+      text-decoration: line-through;
     }
 
+    &:hover {
+      cursor: not-allowed;
+    }
+  `}
+`;
+
+const RuleRowName = styled.td`
+  width: 50%;
+  text-align: left;
+`;
+
+const RuleRowScore = styled.td`
+  width: 50%;
+  text-align: right;
+`;
+
+class RuleRow extends Component {
+  render() {
     return (
-      <tr className={className} onClick={this.props.doScore}>
-        <td className="RuleRow-name">{this.props.name}</td>
-        <td className="RuleRow-score">{this.props.score}</td>
-      </tr>
+      <RuleRowTR score={this.props.score} onClick={this.props.doScore}>
+        {/* {(!isNaN(this.props.score) ? <RuleRowDisabled> : <RuleRowActive>)} */}
+          <RuleRowName>{this.props.name}</RuleRowName>
+          <RuleRowScore>{this.props.score}</RuleRowScore>
+        {/* {(!isNaN(this.props.score) ? `<&#47RuleRowDisabled>` : `<&#47RuleRowActive>`)} */}
+      </RuleRowTR>
     )
   }
 }

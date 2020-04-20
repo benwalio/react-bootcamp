@@ -1,7 +1,26 @@
 import React, { Component } from 'react';
 import RuleRow from './RuleRow';
-import './ScoreTable.css';
 import { ones, twos, threes, fours, fives, sixes, threeOfKind, fourOfKind, fullHouse, smallStraight, largeStraight, yahtzee, chance } from './Rules';
+import styled from 'styled-components';
+
+const ScoreTableDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  background-color: white;
+  padding: 1em;
+
+  table {
+    width: 100%;
+    margin: 0 auto;
+    min-width: 400px;
+  }
+
+  .section {
+    vertical-align: top;
+    width: 100%;
+  }
+`;
 
 
 class ScoreTable extends Component {
@@ -10,7 +29,7 @@ class ScoreTable extends Component {
     const { scores, doScore } = this.props;
 
     return (
-      <div className="ScoreTable">
+      <ScoreTableDiv>
         <h2>current score - {Object.values(scores).reduce((scores, score) => (scores + (score || 0)), 0)}</h2>
         <section className="ScoreTable-section">
           <h2>Upper</h2>
@@ -39,7 +58,7 @@ class ScoreTable extends Component {
             </tbody>
           </table>
         </section>
-      </div>
+      </ScoreTableDiv>
     )
   }
 }

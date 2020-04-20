@@ -25,7 +25,7 @@ class Die extends Component {
     iconClass += getStrFromNum(num);
 
     return (
-      <div className="Die">
+      <div className={this.props.locked ? "Die" : "Die Die-Rolling"}>
         <i
           className={iconClass}
           style={{ color: this.props.locked ? "grey" : "white" }}

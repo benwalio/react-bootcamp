@@ -2,6 +2,48 @@ import React, { Component } from "react";
 import Dice from "./Dice";
 import ScoreTable from "./ScoreTable";
 import "./Game.css";
+import styled from 'styled-components';
+
+const GameBox = styled.div`
+  background: white;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
+  margin: auto 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const GameHeader = styled.header`
+  width: 100%;
+  background: linear-gradient(-45deg, #673ab7, #9c27b0);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+`;
+
+const AppTitle = styled.h1`
+  margin-top: 1rem;
+  color: white;
+  margin-bottom: 0;
+  font-weight: 100;
+  display: inline-block;
+  font-size: 3rem;
+`;
+
+const GameDiceSection = styled.section`
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+`;
+
+const GameButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const NUM_DICE = 5;
 const NUM_ROLLS = 3;
@@ -36,6 +78,7 @@ class Game extends Component {
 
   roll(evt) {
     // roll dice whose indexes are in reroll
+    setTimeout(() => {
     this.setState(st => ({
       dice: st.dice.map((d, i) =>
         st.locked[i] ? d : Math.ceil(Math.random() * 6)
@@ -43,6 +86,7 @@ class Game extends Component {
       locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
       rollsLeft: st.rollsLeft - 1
     }));
+   }, 1500);
   }
 
   toggleLocked(idx) {
@@ -70,17 +114,17 @@ class Game extends Component {
 
   render() {
     return (
-      <div className='Game'>
-        <header className='Game-header'>
-          <h1 className='App-title'>Yahtzee!</h1>
+      <GameBox>
+        <GameHeader>
+          <AppTitle>Yahtzee!</AppTitle>
 
-          <section className='Game-dice-section'>
+          <GameDiceSection>
             <Dice
               dice={this.state.dice}
               locked={this.state.locked}
               handleClick={this.toggleLocked}
             />
-            <div className='Game-button-wrapper'>
+            <GameButtonWrapper>
               <button
                 className='Game-reroll'
                 disabled={this.state.locked.every(x => x)}
@@ -88,11 +132,11 @@ class Game extends Component {
               >
                 {this.state.rollsLeft} Rerolls Left
               </button>
-            </div>
-          </section>
-        </header>
+            </GameButtonWrapper>
+          </GameDiceSection>
+        </GameHeader>
         <ScoreTable doScore={this.doScore} scores={this.state.scores} />
-      </div>
+      </GameBox>
     );
   }
 }

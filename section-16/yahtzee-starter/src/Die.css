@@ -25,11 +25,11 @@
   cursor: pointer;
   opacity: 0.8;
 }
-.Die-rolling {
+.Die-Rolling {
   animation: spin 1s ease-out;
 }
 
-.Die-rolling:hover,
+.Die-Rolling:hover,
 .Die[disabled] {
   cursor: not-allowed;
 }
