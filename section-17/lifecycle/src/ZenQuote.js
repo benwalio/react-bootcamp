@@ -4,18 +4,21 @@ import axios from 'axios';
 class ZenQuote extends Component {
     constructor (props) {
         super(props);
-        this.state = initialState();
+        this.state = this.initialState();
+        this.componentDidMount = this.componentDidMount.bind(this);
     };
     
     initialState () {
         return ({
-            quote = ""
+            quote: ""
         })
     };
 
     componentDidMount() {
-        axios.get("https://api.github.com/zen").then( response =>{
-            console.log(response);
+        axios.get("https://api.github.com/zen").then( response => {
+            this.setState({
+                quote: response.data
+            });
         })
 
     }
@@ -24,7 +27,7 @@ class ZenQuote extends Component {
         return (
             <div>
                 <h1>always remember...</h1>
-                {/* <p>{this.state.quote}</p> */}
+                <p>{this.state.quote}</p>
             </div>
         );
     }
