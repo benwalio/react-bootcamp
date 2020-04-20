@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import './Die.css';
 
 class Die extends Component {
-<<<<<<< HEAD
     constructor (props) {
         super(props);
         this.state = {
             num: 0
         }
     }
-=======
->>>>>>> dev-dice-7
 
     render() {
         const { num } = this.props;
@@ -25,11 +22,7 @@ class Die extends Component {
 
         return (
             <div className="Die">
-<<<<<<< HEAD
                 <i className={iconClass}></i>
-=======
-                <i className={`fas fa-dice-${this.props.num}`}></i>
->>>>>>> dev-dice-7
             </div>
         );
     }

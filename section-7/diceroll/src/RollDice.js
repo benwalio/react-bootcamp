@@ -21,18 +21,13 @@ class RollDice extends Component {
         this.setState({ rolling: true });
         const newDieOne = this.props.sides[Math.floor(Math.random() * this.props.sides.length)];
         const newDieTwo = this.props.sides[Math.floor(Math.random() * this.props.sides.length)];
+
         setTimeout(() => {
-            
             this.setState({
                 rolling: false,
                 dieOne: newDieOne,
                 dieTwo: newDieTwo
             })
-            // this.setState({
-            //     rolling: false,
-            //     dieOne: this.props.sides[Math.floor(Math.random() * this.props.side.length)],
-            //     dieTwo: Math.ceil(Math.random() * 6)
-            // })
         }, 1500);
     }
 

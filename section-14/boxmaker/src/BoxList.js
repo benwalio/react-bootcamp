@@ -22,7 +22,7 @@ class BoxList extends Component {
     removeBox(id) {
         let boxRemoved = [...this.state.boxes];
         // findindex is a great function for sorting through arrays of objects and returning an index
-        boxRemoved.splice(this.state.boxes.findIndex(box => box.id === id));
+        boxRemoved.splice(this.state.boxes.findIndex(box => box.id === id), 1);
         this.setState({
             boxes: boxRemoved
         })
