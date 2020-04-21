@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// let tilt = Math.ceil(Math.random() * 35);
-
 const CardDiv = styled.div`
     width: 30%;
 
