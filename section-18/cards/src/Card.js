@@ -7,7 +7,7 @@ const CardDiv = styled.div`
     width: 30%;
 
     img {
-        heigth: auto;
+        height: auto;
         margin-left: auto;
         margin-right: auto;
         position: absolute;
