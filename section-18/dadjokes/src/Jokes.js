@@ -267,7 +267,13 @@ class Jokes extends Component {
     }
 
     componentDidMount() {
-        this.fillJokes();
+        if (this.state.jokes.length === 0) {
+            this.fillJokes();
+        } else if (this.state.loading) {
+            this.setState({
+                loading: false
+            })
+        }
     }
 
     componentDidUpdate() {
