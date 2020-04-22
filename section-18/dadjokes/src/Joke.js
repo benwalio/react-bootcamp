@@ -1,5 +1,25 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+
+const BobDown = keyframes`
+  0%, 50%, 100% {
+    transform: translateY(0);
+  }
+  25%,
+  75% {
+    transform: translateY(3px);
+  }
+`;
+
+const BobUp = keyframes`
+  0%, 50%, 100% {
+    transform: translateY(0);
+  }
+  25%,
+  75% {
+    transform: translateY(-3px);
+  }
+`;
 
 const JokeDiv = styled.div`
     display: flex;
@@ -48,15 +68,31 @@ const JokeVotesDiv = styled.div`
 
     i {
         font-size: 1rem;
+        transition: 0.3s;
     }
 
     #up {
         justify-self: flex-start;
+        cursor: pointer;
+        :hover {
+        animation-name: ${BobUp};
+        animation-duration: 0.7s;
+        animation-timing-function: ease-out;
+        animation-delay: 0s;
+        }
     }
 
     #down {
         justify-self: flex-end;
+        cursor: pointer;
         text-align: right;
+        :hover {     
+            animation-name: ${BobDown};
+            animation-duration: 0.7s;
+            animation-timing-function: ease-out;
+            animation-delay: 0s;
+        }
+        
     }
 `;
 

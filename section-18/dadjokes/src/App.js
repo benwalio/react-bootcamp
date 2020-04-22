@@ -7,7 +7,7 @@ const AppDiv = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(151deg, rgba(179,229,252,1) 50%, rgba(240,98,146,1) 50%);
+  background: linear-gradient(130deg, rgba(179,229,252,1) 50%, rgba(240,98,146,1) 50%);
   color: #78979c;
   font-family: 'Rubik', sans-serif;
 `;
