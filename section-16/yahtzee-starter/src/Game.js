@@ -169,7 +169,7 @@ class Game extends Component {
       locked: Array(NUM_DICE).fill(false)
     }));
     this.roll();
-  }
+  };
 
   render() {
     return (

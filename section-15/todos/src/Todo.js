@@ -14,6 +14,10 @@ class Todo extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.removeTodo = this.removeTodo.bind(this);
     };
+
+    componentDidUpdate(prevProps, prevState) {
+        
+    }
     
     handleClick (e) {
         e.preventDefault();

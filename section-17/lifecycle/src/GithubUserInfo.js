@@ -25,6 +25,10 @@ class GithubUserInfo extends Component {
         })
     };
 
+    componentDidUpdate() {
+
+    };
+
     render() {
         return (
             <div>
