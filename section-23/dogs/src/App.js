@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import styled from 'styled-components';
-import { Route, Switch } from 'react-router-dom';
-import Dog from './Dog';
+import Routes from './Routes';
 import Navigation from './Navigation';
 import whiskey from "./imgs/whiskey.jpg";
 import tubby from "./imgs/tubby.jpg";
 import hazel from "./imgs/hazel.jpg";
 
 const AppDiv = styled.div`
-  
-`;
-
-const AppDogsDiv = styled.div`
-  
-`;
-
-const AppDogDiv = styled(Dog)`
-  
+  background-color: #4abdac;
+  color: #85dcb0;
 `;
 
 class App extends Component {
@@ -52,39 +44,48 @@ class App extends Component {
           "Tubby does not like walks or exercise.",
           "Tubby loves eating food."
         ]
+      },
+      {
+        name: "Sbuubbby",
+        age: 4,
+        src: tubby,
+        facts: [
+          "Sbuubbby is not the brightest dog",
+          "Sbuubbby does not like walks or exercise.",
+          "Sbuubbby loves eating food."
+        ]
       }
     ]
   };
 
-  renderNav( {
+  renderNav() {
     return (
-      <Navigation>
-        {this.props.dogs.map(dog => 
-          
-        )}
-      </Navigation>
-    )
-  })
-
-  renderDogs() {
-    return (
-      <AppDogsDiv>
-        {this.props.dogs.map(dog =>
-          <AppDogDiv 
-            name={dog.name}
-            age={dog.age}
-            imgSrc={dog.src}
-            facts={dog.facts}
-          />
-        )}
-      </AppDogsDiv>
+      <Navigation
+        dogs={this.props.dogs}
+      />
     )
   }
+
+  // renderDogs() {
+  //   return (
+  //     <AppDogsDiv>
+  //       {this.props.dogs.map(dog =>
+  //         <AppDogDiv 
+  //           name={dog.name}
+  //           age={dog.age}
+  //           imgSrc={dog.src}
+  //           facts={dog.facts}
+  //         />
+  //       )}
+  //     </AppDogsDiv>
+  //   )
+  // }
   render() {
     return (
       <AppDiv>
         {this.renderNav()}
-        {this.renderDogs()}
+        {/* {this.renderDogs()} */}
+        <Routes dogs={this.props.dogs} />
       </AppDiv>
     );
   }

@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import styled from 'styled-components';
 
 const NavbarDiv = styled(Navbar)`
     
 `;
 
-const NavbarDogList = styled.div`
+const NavbarDogList = styled(Navbar)`
     
 `;
 
-const NavbarDog = styled.div`
+const NavbarDog = styled(Nav)`
     
 `;
+
+
 
 class Navigation extends Component {
     constructor (props) {
@@ -27,19 +30,21 @@ class Navigation extends Component {
 
     listDogs() {
         return (
-            <NavbarDogList>
+            <NavbarDogList.Collapse className="mr-auto">
                 {this.props.dogs.map(dog =>
-                    <NavbarDog.Item
+                    <NavbarDog.Link
+                        key={dog.name}
                         name={dog.name}
                         onClick={this.handleClick}
-                    />
+                    >{dog.name}</NavbarDog.Link>
                 )}
-            </NavbarDogList>
+            </NavbarDogList.Collapse>
         )
     }
+
     render() {
         return (
-            <NavbarDiv>
+            <NavbarDiv bg="dark" variant="dark">
                 <NavbarDiv.Brand href="/">Ben</NavbarDiv.Brand>
                 {this.listDogs()}
             </NavbarDiv>
