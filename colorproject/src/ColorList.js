@@ -7,9 +7,12 @@ import Card from '@material-ui/core/Card';
 // eslint-disable-next-line
 import Grid from '@material-ui/core/Grid';
 // import BrushOutlinedIcon from '@material-ui/icons/BrushOutlined';
+// eslint-disable-next-line
+import CardMedia from '@material-ui/core/CardMedia';
 import { Emoji } from 'emoji-mart';
 import styled from 'styled-jss';
 import { v4 as uuid } from 'uuid';
+import ColorsBlock from './ColorsBlock';
 
 const ColorListContainer = styled(Container)({
     backgroundImage: 'url(./assets/img/background.jpg)',
@@ -61,25 +64,73 @@ class ColorList extends Component {
                 id: uuid(),
                 emoji: 'ok_hand',
                 name: 'firetruck go froom',
-                colors: []
+                colors: [
+                    '#eeba30',
+                    '#d3a625',
+                    '#000000',
+                    '#e1f7d5',
+                    '#ffbdbd',
+                    '#c9c9ff',
+                    '#f1cbff',
+                    '#01cdfe',
+                    '#05ffa1',
+                    '#740001',
+                    '#ae0001'
+                ]
             },
             {
                 id: uuid(),
                 emoji: 'croissant',
                 name: 'blu-monay',
-                colors: []
+                colors: [
+                    '#eeba30',
+                    '#d3a625',
+                    '#000000',
+                    '#e1f7d5',
+                    '#ffbdbd',
+                    '#c9c9ff',
+                    '#f1cbff',
+                    '#01cdfe',
+                    '#05ffa1',
+                    '#740001',
+                    '#ae0001'
+                ]
             },
             {
                 id: uuid(),
                 emoji: 'tulip',
                 name: 'candlelight by the candlelight',
-                colors: []
+                colors: [
+                    '#eeba30',
+                    '#d3a625',
+                    '#000000',
+                    '#e1f7d5',
+                    '#ffbdbd',
+                    '#c9c9ff',
+                    '#f1cbff',
+                    '#01cdfe',
+                    '#05ffa1',
+                    '#740001',
+                    '#ae0001'
+                ]
             },
             {
                 id: uuid(),
                 emoji: 'turkey',
                 name: 'puuuuuuurppp',
-                colors: []
+                colors: [
+                    '#eeba30',
+                    '#d3a625',
+                    '#000000',
+                    '#e1f7d5',
+                    '#ffbdbd',
+                    '#c9c9ff',
+                    '#f1cbff',
+                    '#01cdfe',
+                    '#05ffa1',
+                    '#740001',
+                    '#ae0001'
+                ]
             }
         ]
     }
@@ -89,7 +140,10 @@ class ColorList extends Component {
             <ColorListColors container spacing={2}>
                 {this.props.colorCollections.map(collection =>
                     <ColorCardDiv item xs={4} key={collection.id}>
-                        <ColorCard>{collection.name}<Emoji emoji={collection.emoji} size={24} /></ColorCard>
+                        <ColorCard>
+                            <ColorsBlock colors={collection.colors} />
+                            {collection.name}<Emoji emoji={collection.emoji} size={24} />
+                        </ColorCard>
                     </ColorCardDiv>
                 )}
             </ColorListColors>
