@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import ColorList from './ColorList';
+import ColorsMiddle from './ColorsMiddle';
 
 function App() {
   return (
     <div className="App">
-      <ColorList />
+      <ColorsMiddle />
     </div>
   );
 }
