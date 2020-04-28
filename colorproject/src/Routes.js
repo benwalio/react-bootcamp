@@ -6,13 +6,13 @@ import Palette from './Palette';
 class Routes extends Component {
     render() {
         const getPalette = props => {
-            let name = props.match.params.name;
+            let id = props.match.params.id;
             let currentPalette = this.props.colorCollections.find(
-                color => name === color.name
+                collection => id === collection.id
             );
             return <Palette {...props} colorPalette={currentPalette} />
         }
-        
+
         return (
             <div>
                 <Switch>
