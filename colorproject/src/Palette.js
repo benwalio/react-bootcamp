@@ -5,32 +5,54 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-jss';
 
-const PaletteDiv = styled(Container)({
+const PaletteDiv = styled(Grid)({
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'nowrap',
-    margin: 0,
     padding: '1rem',
-    height: '400px',
-    width: '400px'
-})
-
-const CommandDiv = styled(Container)({
     width: '100%',
     height: '100%',
+    alignItems: "center",
+    justifyContent: "center",
+})
+
+const CommandDiv = styled(PaletteDiv)({
+    flex: '1 0',
     backgroundColor: 'blue'
 })
 
-const ColorsGrid = styled(Grid)({
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'red'
+const ColorsGrid = styled(PaletteDiv)({
+    margin: 0,
+    padding: 0,
+    backgroundColor: 'red',
+})
+
+const ColorGrid = styled(PaletteDiv)({
+    margin: 0,
+    padding: 0,
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+})
+
+const Color = styled(ColorGrid)({
+    backgroundColor: (props) => props.color,
+    height: '100px',
+})
+
+const TopDiv = styled(PaletteDiv)({
+    backgroundColor: 'yellow',
+})
+
+const BottomDiv = styled(PaletteDiv)({
+    backgroundColor: 'yellow',
 })
 
 class Palette extends Component {
     constructor (props) {
         super(props);
-        this.state = this.initialState();
+        this.state = {
+            colors: this.props.colorPalette
+        };
+        this.renderColors = this.renderColors.bind(this);
     };
     
     initialState () {
@@ -38,15 +60,34 @@ class Palette extends Component {
             colors: this.props.colorPalette
         })
     };
+
+    renderColors() {
+        return(
+            <ColorGrid>
+                {this.state.colors.colors.map(color =>
+                    <Color item xs={3} color={color}>
+                        
+                    </Color>
+                )}
+            </ColorGrid>
+        )
+    }
+
     render() {
         return (
-            <PaletteDiv>
-                <CommandDiv xs={3}>
+            <PaletteDiv container>
+                <TopDiv item xs={12}>
 
+                </TopDiv>
+                <CommandDiv item xs={3}>
+                    <input type="text"/>
                 </CommandDiv>
-                <ColorsGrid xs={9}>
-
+                <ColorsGrid item xs={9}>
+                    {this.renderColors()}
                 </ColorsGrid>
+                <BottomDiv item xs={12}>
+
+                </BottomDiv>
             </PaletteDiv>
         );
     }
