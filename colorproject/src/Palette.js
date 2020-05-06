@@ -4,11 +4,11 @@ import Container from '@material-ui/core/Container';
 // eslint-disable-next-line
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-jss';
+import ColorBox from './ColorBox';
 
 const PaletteDiv = styled(Grid)({
     display: 'flex',
     flexDirection: 'row',
-    padding: '1rem',
     width: '100%',
     height: '100%',
     alignItems: "center",
@@ -40,6 +40,7 @@ const Color = styled(ColorGrid)({
 
 const TopDiv = styled(PaletteDiv)({
     backgroundColor: 'yellow',
+    height: '4rem'
 })
 
 const BottomDiv = styled(PaletteDiv)({
@@ -65,9 +66,9 @@ class Palette extends Component {
         return(
             <ColorGrid>
                 {this.state.colors.colors.map(color =>
-                    <Color item xs={3} color={color}>
+                    <ColorBox name={this.state.colors.name} id={this.state.colors.id} color={color}>
                         
-                    </Color>
+                    </ColorBox>
                 )}
             </ColorGrid>
         )
@@ -79,10 +80,10 @@ class Palette extends Component {
                 <TopDiv item xs={12}>
 
                 </TopDiv>
-                <CommandDiv item xs={3}>
+                {/* <CommandDiv item xs={3}>
                     <input type="text"/>
-                </CommandDiv>
-                <ColorsGrid item xs={9}>
+                </CommandDiv> */}
+                <ColorsGrid item>
                     {this.renderColors()}
                 </ColorsGrid>
                 <BottomDiv item xs={12}>

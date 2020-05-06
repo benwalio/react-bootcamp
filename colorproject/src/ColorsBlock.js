@@ -38,7 +38,7 @@ class ColorsBlock extends Component {
         return (
             <ColorSquareBox id={this.props.id} onClick={this.handleClick}>
                 {this.props.colors.map(color => 
-                    <ColorSquare item xs={3} spacing={0} color={color}>
+                    <ColorSquare item xs={3} spacing={0} color={color.color}>
 
                     </ColorSquare>
                 )}
