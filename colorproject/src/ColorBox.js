@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import styled from "styled-jss";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-const ColorBoxColor = styled(Grid)({
+const ColorBoxColor = styled('div')({
   backgroundColor: (props) => props.color,
   height: "34%",
   width: '20%',
@@ -75,6 +75,7 @@ const CopyOverlayDiv = styled('div')({
   height: '100%',
   transition: 'transform 0.6s ease-in-out',
   transform: 'scale(0.1)',
+  textAlign: 'center',
 })
 
 const CopyOverlayMsg = styled('div')({
@@ -85,6 +86,7 @@ const CopyOverlayMsg = styled('div')({
   right: 0,
   fontSize: '4rem',
   transform: 'scale(0.1)',
+  transformDelay: '0.6s',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -94,6 +96,11 @@ const CopyOverlayMsg = styled('div')({
     fontWeight: 400,
     textShadow: [[1, 2, 'black']],
     background: 'rgba(255, 255, 255, 0.2)'
+  },
+  '& p': {
+    fontSize: '2rem',
+    fontWeight: 200, 
+    textShadow: [[1, 2, 'black']],
   }
 })
 

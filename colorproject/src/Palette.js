@@ -9,7 +9,7 @@ import ColorBox from "./ColorBox";
 const PaletteDiv = styled(Grid)({
   display: "flex",
   flexDirection: "row",
-  width: "100%",
+  width: "100vw",
   height: "100vh",
   alignItems: "center",
   justifyContent: "center",
@@ -27,11 +27,15 @@ const ColorsGrid = styled(PaletteDiv)({
   height: '90%'
 });
 
-const ColorGrid = styled(PaletteDiv)({
+const ColorGrid = styled('div')({
   margin: 0,
   padding: 0,
+  display: "flex",
+  flexDirection: "row",
   justifyContent: "flex-start",
   flexWrap: "wrap",
+  height: '80%',
+  width: '100%'
 });
 
 const Color = styled(ColorGrid)({
@@ -41,11 +45,12 @@ const Color = styled(ColorGrid)({
 
 const TopDiv = styled(PaletteDiv)({
   backgroundColor: "yellow",
-  height: "4rem",
+  height: "10%",
 });
 
 const BottomDiv = styled(PaletteDiv)({
   backgroundColor: "yellow",
+  height: "10%",
 });
 
 class Palette extends Component {
@@ -65,7 +70,7 @@ class Palette extends Component {
 
   renderColors() {
     return (
-      <ColorGrid>
+      <ColorGrid item xs={12}>
         {this.state.colors.colors.map((color) => (
           <ColorBox
             name={this.state.colors.name}
@@ -84,7 +89,7 @@ class Palette extends Component {
         {/* <CommandDiv item xs={3}>
                 <input type="text"/>
                 </CommandDiv> */}
-        <ColorsGrid item>{this.renderColors()}</ColorsGrid>
+        {this.renderColors()}
         <BottomDiv item xs={12}></BottomDiv>
       </PaletteDiv>
     );

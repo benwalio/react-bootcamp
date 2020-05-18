@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Routes from './Routes';
 import { v4 as uuid } from 'uuid';
+import ls from 'local-storage';
+import seedColors from './SeedColors';
 
 class ColorsMiddle extends Component {
     static defaultProps = {
         colorCollections: [
             {
-                id: uuid(),
+                id: "8b3d96fa-ab86-4b66-906e-537a01e79f09",
                 emoji: 'ok_hand',
                 name: 'firetruck go froom',
                 colors: [
@@ -24,7 +26,7 @@ class ColorsMiddle extends Component {
                 ]
             },
             {
-                id: uuid(),
+                id: "8b3d96fa-ab86-4b66-906e-537a01e79f08",
                 emoji: 'croissant',
                 name: 'blu-monay',
                 colors: [
@@ -42,7 +44,7 @@ class ColorsMiddle extends Component {
                 ]
             },
             {
-                id: uuid(),
+                id: "8b3d96fa-ab86-4b66-906e-537a01e79f07",
                 emoji: 'tulip',
                 name: 'candlelight by the candlelight',
                 colors: [
@@ -60,7 +62,7 @@ class ColorsMiddle extends Component {
                 ]
             },
             {
-                id: uuid(),
+                id: "8b3d96fa-ab86-4b66-906e-537a01e79f06",
                 emoji: 'turkey',
                 name: 'puuuuuuurppp',
                 colors: [
@@ -83,7 +85,7 @@ class ColorsMiddle extends Component {
     render() {
         return (
             <div>
-                <Routes colorCollections={this.props.colorCollections} />
+                <Routes colorCollections={...seedColors} />
             </div>
         );
     }
