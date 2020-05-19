@@ -10,13 +10,13 @@ const ColorSquareBox = styled(Grid)({
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
     padding: 'auto',
-    height: '14rem',
+    height: '12rem',
     width: '100%'
 })
 
 const ColorSquare = styled(Grid)({
     width: '100%',
-    height: '33.34%',
+    height: '33.33%',
     margin: 0,
     padding: 0,
     backgroundColor: (props) => props.color

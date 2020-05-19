@@ -54,20 +54,21 @@ class ColorList extends Component {
     
     constructor(props) {
         super(props);
-        // this.renderColorBoxes = this.renderColorBoxes.bind(this);
+        this.renderColorBoxes = this.renderColorBoxes.bind(this);
     }
 
     renderColorBoxes () {
         return (
             <ColorListColors container spacing={2}>
-                {this.props.colorCollections.map(collection =>
+                {Object.values(this.props.colorCollections).map( collection => (
                     <ColorCardDiv item xs={4} key={collection.id}>
+                    {console.log(collection)}
                         <ColorCard>
-                            <ColorsBlock history={this.props.history} colors={collection.colors} name={collection.name} id={collection.id} />
-                            {collection.name}<Emoji emoji={collection.emoji} size={24} />
+                            <ColorsBlock history={this.props.history} colors={collection.colors} name={collection.paletteName} id={collection.id} />
+                            {collection.paletteName}<span>{collection.emoji}</span>
                         </ColorCard>
                     </ColorCardDiv>
-                )}
+                ))}
             </ColorListColors>
         )
     }
