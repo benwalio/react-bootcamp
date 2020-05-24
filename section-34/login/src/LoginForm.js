@@ -48,7 +48,7 @@ const langPack = {
 
 function LoginForm(props) {
     const { lang, changeLang } = useContext(LanguageContext)
-    const { classes } = this.props;
+    const { classes } = props;
 
     const { email, signIn, password, langEng, langSpa, langKli, remember } = langPack[lang];
 
