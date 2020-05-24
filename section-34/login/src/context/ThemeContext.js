@@ -1,27 +1,16 @@
 import React, { createContext } from "react";
+import useToggle from "../hooks/useToggle";
 
 export const ThemeContext = createContext();
 
-export class ThemeProvider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isDarkMode: false,
-    };
-    this.toggleTheme = this.toggleTheme.bind(this)
-  }
+export function ThemeProvider(props) {
+  const [isDarkMode, toggleIsDarkMode] = useToggle(false);
 
-  toggleTheme() {
-      this.setState({
-          isDarkMode: !this.state.isDarkMode
-      })
-  }
+  const toggleTheme = () => toggleIsDarkMode(isDarkMode);
 
-  render() {
-    return (
-      <ThemeContext.Provider value={{ ...this.state, toggleTheme: this.toggleTheme }}>
-        {this.props.children}
-      </ThemeContext.Provider>
-    );
-  }
+  return (
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      {this.props.children}
+    </ThemeContext.Provider>
+  );
 }
