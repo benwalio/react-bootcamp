@@ -1,33 +1,15 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 
 export const LanguageContext = createContext();
 
-export class LanguageProvider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lang: 'klingon',
-    };
-    this.changeLang = this.changeLang.bind(this)
-  }
+export function LanguageProvider(props) {
+    const [lang, setLang] = useState('klingon');
 
-  changeLang(e) {
-      this.setState({
-          lang: e.target.value
-      })
-  }
+    const changeLang =(e) => setLang(e.target.value);
 
-  render() {
     return (
-      <LanguageContext.Provider value={{ ...this.state, changeLang: this.changeLang }}>
-        {this.props.children}
+      <LanguageContext.Provider value={{ lang, changeLang }}>
+        {props.children}
       </LanguageContext.Provider>
     );
-  }
 }
-
-export const withLanguageContext = Component => props => (
-    <LanguageContext.Consumer>
-        {value => <Component lang={value} {...props} />}
-    </LanguageContext.Consumer>
-)
