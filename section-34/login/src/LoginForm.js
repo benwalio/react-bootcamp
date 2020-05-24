@@ -14,34 +14,70 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./styles/FormStyles";
+import { LanguageContext } from './context/LanguageContext'
+
+const langPack = {
+    english: {
+        email: 'email',
+        signIn: 'sign in',
+        password: 'password',
+        langEng: 'english',
+        langSpa: 'spanish',
+        langKli: 'klingon',
+        remember: 'remember me'
+    },
+    spanish: {
+        email: 'correo electrónico',
+        signIn: 'firme en el registro',
+        password: 'contraseña',
+        langEng: 'inglés',
+        langSpa: 'español',
+        langKli: 'klingon',
+        remember: 'recuerdenme'
+    },
+    klingon: {
+        email: 'email SoQ',
+        signIn: 'qI\'',
+        password: 'mu\'wIj',
+        langEng: 'tera\'',
+        langSpa: 'spanish Hol',
+        langKli: 'tlhIngan',
+        remember: 'qaw jih'
+    }
+}
 
 class LoginForm extends Component {
+    static contextType = LanguageContext;
   render() {
     const { classes } = this.props;
+    const { lang, changeLang } = this.context;
+
+    const { email, signIn, password, langEng, langSpa, langKli, remember } = langPack[lang];
+
     return (
       <div className={classes.main}>
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography variant="h5">sign in</Typography>
-          <Select value='english'>
-            <MenuItem value='english'>english</MenuItem>
-            <MenuItem value='spanish'>spanish</MenuItem>
-            <MenuItem value='klingon'>klingon</MenuItem>
+          <Typography variant="h5">{signIn}</Typography>
+          <Select value={lang} onChange={changeLang}>
+            <MenuItem value='english'>{langEng}</MenuItem>
+            <MenuItem value='spanish'>{langSpa}</MenuItem>
+            <MenuItem value='klingon'>{langKli}</MenuItem>
           </Select>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">email</InputLabel>
+              <InputLabel htmlFor="email">{email}</InputLabel>
               <Input id="email" name="email" autoFocus />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">password</InputLabel>
+              <InputLabel htmlFor="password">{password}</InputLabel>
               <Input id="password" name="password" autoFocus />
             </FormControl>
             <FormControlLabel
               control={<Checkbox color="primary" />}
-              label="remember me"
+              label={remember}
             />
           </form>
           <Button
@@ -51,7 +87,7 @@ class LoginForm extends Component {
             className={classes.submit}
             fullWidth
           >
-            sign in
+            {signIn}
           </Button>
         </Paper>
       </div>
