@@ -30,6 +30,9 @@ const styles = (theme) => ({
   submit: {
     marginTop: theme.spacing(3),
   },
+  select: {
+      marginTop: theme.spacing(2),
+  }
 });
 
 export default styles;

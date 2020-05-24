@@ -57,6 +57,9 @@ const styles = theme => ({
                 width: 200
             }
         }
+    },
+    switch: {
+        marginLeft: '1rem'
     }
 })
 

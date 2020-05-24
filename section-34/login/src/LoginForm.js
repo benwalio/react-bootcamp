@@ -61,7 +61,7 @@ class LoginForm extends Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography variant="h5">{signIn}</Typography>
-          <Select value={lang} onChange={changeLang}>
+          <Select className={classes.select} value={lang} onChange={changeLang}>
             <MenuItem value='english'>{langEng}</MenuItem>
             <MenuItem value='spanish'>{langSpa}</MenuItem>
             <MenuItem value='klingon'>{langKli}</MenuItem>
