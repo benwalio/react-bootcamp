@@ -12,11 +12,11 @@ import { TodosContext } from './context/todos.context'
 
 export default function Todo(props) {
     const [isEditing, toggle] = useToggle();
-    const { removeTodo, editTodo, toggleTodo } = useContext(TodosContext);
+    const { removeTodo, toggleTodo } = useContext(TodosContext);
 
   return (
     <ListItem key={props.id} style={{ height: '64px'}}>
-    {isEditing ? <EditTodoForm editing={toggle} id={props.id} todo={props.todo} editTodo={editTodo} /> :
+    {isEditing ? <EditTodoForm editing={toggle} id={props.id} todo={props.todo} /> :
     <>
       <Checkbox tabIndex={-1} checked={props.completed} onClick={() => toggleTodo(props.id)} />
       <ListItemText style={{ textDecoration: !props.completed ? '' : 'line-through'}}>{props.todo}</ListItemText>
