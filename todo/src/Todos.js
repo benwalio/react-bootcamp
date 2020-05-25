@@ -6,7 +6,7 @@ import Todo from "./Todo";
 import { TodosContext } from './context/todos.context'
 
 export default function Todos(props) {
-  const { todos } = useContext(TodosContext);
+  const todos = useContext(TodosContext);
   if (todos.length)
     return (
       <Paper>

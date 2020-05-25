@@ -1,15 +1,18 @@
-import React, { createContext } from 'react'
-import useTodoState from '../hooks/useTodoState'
+import React, { createContext, useReducer } from "react";
+import TodoReducer from "../reducers/todo.reducer";
 
 export const TodosContext = createContext();
+export const DispatchContext = createContext();
 
 export function TodosProvider(props) {
-    const initTodos = JSON.parse(window.localStorage.getItem("todos")) || [];
-    const {todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(initTodos);
+  const initTodos = JSON.parse(window.localStorage.getItem("todos")) || [];
+  const [todos, dispatch] = useReducer(TodoReducer, initTodos);
 
-    return (
-      <TodosContext.Provider value={{ todos, addTodo, removeTodo, toggleTodo, editTodo }}>
+  return (
+    <TodosContext.Provider value={todos}>
+      <DispatchContext.Provider value={dispatch}>
         {props.children}
-      </TodosContext.Provider>
-    );
+      </DispatchContext.Provider>
+    </TodosContext.Provider>
+  );
 }
