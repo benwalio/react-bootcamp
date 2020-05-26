@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -10,7 +10,7 @@ import useToggle from './hooks/useToggle.js';
 import EditTodoForm from './EditTodoForm';
 import { DispatchContext } from './context/todos.context'
 
-export default function Todo(props) {
+function Todo(props) {
     const [isEditing, toggle] = useToggle();
     const dispatch = useContext(DispatchContext);
 
@@ -34,3 +34,5 @@ export default function Todo(props) {
     </ListItem>
   );
 }
+
+export default memo(Todo);
