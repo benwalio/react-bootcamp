@@ -1,17 +1,44 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import axios from "axios";
 
-export default function Index({ props }) {
+// export default class Index extends Component {
+//     constructor(props) {
+//         super(props);
+//     }
+//     static async getInitialProps() {
+//         const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+//         const { data } = await res.data;
+//         return { posts: data };
+//     }
+//   render() {
+//     return (
+//       <div>
+//         <h1>index jawn</h1>
+//         {/* {this.props.posts.map(posts =>
+//         <p>{post}</p>
+//         )} */}
+//       </div>
+//     );
+//   }
+// }
 
-        return (
-            <div>
-                <h1>index jawn</h1>
-                <p>{props.props}</p>
-            </div>
-        )
-}
+const Index = ({ posts }) => {
+  return (
+    <div>
+      <h1>index jawn</h1><ul>
+      {posts.map(post =>
+      <li key={post.id}>{post.title}</li>
+      )}</ul>
+    </div>
+  );
+};
 
-export async function getServerSideProps() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-    const json = await res.json()
-    return { props: {json} }
-}
+export default Index;
+
+export const getServerSideProps = async () => {
+  const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  const { data } = await res;
+  return { props: { posts: data }};
+};
+
+
