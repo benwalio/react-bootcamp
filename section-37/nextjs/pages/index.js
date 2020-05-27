@@ -1,12 +1,17 @@
-import Link from 'next/link'
-import AppNavbar from '../components/AppNavbar'
+import React, { Component } from 'react'
 
-const Index = () => (
-    <div>
-        <AppNavbar />
-        <h1>index jawwn</h1>
-        <Link href='/about'><a>about</a></Link>
-    </div>
-)
+export default function Index({ props }) {
 
-export default Index;
+        return (
+            <div>
+                <h1>index jawn</h1>
+                <p>{props.props}</p>
+            </div>
+        )
+}
+
+export async function getServerSideProps() {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const json = await res.json()
+    return { props: {json} }
+}
